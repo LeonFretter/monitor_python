@@ -3,7 +3,8 @@ from command_set import Set
 from command_capture import Capture
 
 if len(sys.argv) < 2:
-    print('Usage: TODO')
+    print('Usage: main.py <command> <options>')
+    exit()
 
 args = sys.argv[1:]
 command = args[0]
