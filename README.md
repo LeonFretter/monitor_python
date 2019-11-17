@@ -1,0 +1,1 @@
+A simple python cli that allows a fast (de)activation of connected monitors.
