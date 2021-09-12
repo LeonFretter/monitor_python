@@ -7,9 +7,8 @@ class Config:
         config_path = folder_path + '/config.json'
         self.config_file = open( config_path, 'r+' )
     
-    def read(self):
-        config = json.load(self.config_file)
-        return config
+    def read(self) -> dict:
+        return json.load(self.config_file)
 
     def write(self, content: dict) -> None:
         json.dump(content, self.config_file, indent=4)

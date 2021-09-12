@@ -25,18 +25,27 @@ class Capture:
             }
         }
 
-    def command(self):
-        process_xrandr = Popen(['xrandr'], stdout=PIPE, stderr=PIPE)
-        stdout, stderr = process_xrandr.communicate()
-
-        stdout_str = stdout.decode('utf-8')
-        stdout_lines = stdout_str.splitlines()
+    def command(self) -> None:
+        stdout_lines = self.readXrandr()
 
         monitors = []
 
         for line in stdout_lines:
             if ' connected ' in line:
-                monitor = self.getMonitor(line)
-                monitors.append(monitor)
+                if '+' in line:
+                    monitor = self.getMonitor(line)
+                    monitors.append(monitor)
+                else:
+                    print('Only call capture when all your monitors are activated')
+                    exit(1)
         
+        monitors = sorted(monitors, key=lambda m: m['coordinates']['offset'][0])
         self.config.write( { 'monitors': monitors } )
+
+    def readXrandr(self) -> 'list[str]':
+        process_xrandr = Popen(['xrandr'], stdout=PIPE, stderr=PIPE)
+        stdout, stderr = process_xrandr.communicate()
+
+        stdout_str = stdout.decode('utf-8')
+
+        return stdout_str.splitlines()
