@@ -5,6 +5,8 @@ class Preset:
     def __init__(self) -> None:
         folder_path = os.path.abspath(os.path.dirname(__file__))
         preset_path = folder_path + '/presets.json'
+        if not os.path.isfile(preset_path):
+            os.mknod(preset_path)
         self.preset_file = open(preset_path, 'r+')
 
     def savePreset(self, label: str, preset: 'list[str]') -> None:

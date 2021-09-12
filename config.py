@@ -5,6 +5,8 @@ class Config:
     def __init__(self):
         folder_path = os.path.abspath( os.path.dirname(__file__) )
         config_path = folder_path + '/config.json'
+        if not os.path.isfile(config_path):
+            os.mknod(config_path)
         self.config_file = open( config_path, 'r+' )
     
     def read(self) -> dict:
