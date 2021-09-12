@@ -17,3 +17,6 @@ Then
 
 ## Set
 After having captured one or more layouts, `monitor set <label>` lets you switch between them.
+
+## List
+`monitor list` prints out the labels of your configured layouts.
