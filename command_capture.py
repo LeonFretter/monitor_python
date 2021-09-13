@@ -29,9 +29,11 @@ class Capture:
         words = line.split()
         interface = words[0]
         coords = words[2]
+        primary = False
 
         if ' primary ' in line:
             coords = words[3]
+            primary = True
 
         if '+' in line:
             coords_split = coords.replace('x', ' ').replace('+', ' ').split()
@@ -41,6 +43,7 @@ class Capture:
             return {
                 'interface': interface,
                 'state': 'on',
+                'primary': primary,
                 'coordinates': {
                     'size': size,
                     'offset': offset

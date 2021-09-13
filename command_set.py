@@ -25,6 +25,8 @@ class Set():
                 command.append('--pos')
                 command.append(offset[0] + 'x' + offset[1])
                 command.append('--auto')
+                if monitor['primary'] == True:
+                    command.append('--primary')
 
         process = Popen(command, stdout=PIPE, stderr=PIPE)
         process.communicate()
