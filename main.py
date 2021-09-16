@@ -5,7 +5,7 @@ from command_list import listPresets
 
 if len(sys.argv) < 2:
     print('Usage: main.py <command> <options>')
-    exit()
+    exit(1)
 
 args = sys.argv[1:]
 command = args[0]
@@ -13,12 +13,14 @@ command = args[0]
 if command == 'capture':
     if len(sys.argv) < 3:
         print("Usage: main.py capture <label>")
+        exit(1)
     label = args[1]
     command_capture = Capture()
     command_capture.command(label)
 elif command == 'set':
     if len(sys.argv) < 3:
         print("Usage: main.py set <label>")
+        exit(1)
     label = args[1]
     command_set = Set()
     command_set.command(label)
@@ -27,4 +29,4 @@ elif command == 'list':
 
 else:
     print('Unrecognized command')
-    exit()
+    exit(1)
